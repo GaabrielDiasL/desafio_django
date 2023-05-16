@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'api.apps.ApiConfig',
     'rest_framework',
+    'django_crontab',
 
 ]
 
@@ -100,6 +101,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
+]
+
+CRONJOBS = [
+    ('0 0 * * *', 'api.management.commands.import_files.Command')
 ]
 
 
