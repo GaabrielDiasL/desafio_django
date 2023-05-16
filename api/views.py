@@ -1,6 +1,11 @@
 from rest_framework import generics
 from .models import Esporte, Time
 from .serializers import EsporteSerializer, TimeSerializer
+from django.shortcuts import render
+
+def index(request):
+    times = Time.objects.all()
+    return render(request, 'index.html', {"times": times})
 
 class TimeList(generics.ListCreateAPIView):
     serializer_class = TimeSerializer
@@ -23,3 +28,4 @@ class EsporteList(generics.ListCreateAPIView):
 class EsporteDetail(generics.RetrieveDestroyAPIView):
     serializer_class = EsporteSerializer
     queryset = Esporte.objects.all()
+
